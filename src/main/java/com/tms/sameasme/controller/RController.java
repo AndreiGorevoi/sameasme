@@ -3,7 +3,6 @@ package com.tms.sameasme.controller;
 import com.tms.sameasme.dto.post.CreatePostDto;
 import com.tms.sameasme.model.ETag;
 import com.tms.sameasme.model.Post;
-import com.tms.sameasme.repository.post.PostRepository;
 import com.tms.sameasme.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class RController {
+public class RController extends BaseController {
 
     private final PostService postService;
 
