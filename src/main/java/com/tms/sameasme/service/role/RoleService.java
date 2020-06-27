@@ -1,8 +1,9 @@
 package com.tms.sameasme.service.role;
 
-import org.springframework.stereotype.Service;
+import com.tms.sameasme.model.role.ERole;
+import com.tms.sameasme.model.role.Role;
 
-@Service
 public interface RoleService {
 
+    Role getRoleByName(ERole eRole);
 }
