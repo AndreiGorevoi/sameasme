@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+</head>
+<body>
+<div style="text-align: center"  >
+    <div style="text-align: center" >
+            Name
+            <div data-validate="Please enter name">
+            <input id="name" type="text" name="name" placeholder="name">
+            <span></span>
+            </div>
+
+            Login
+            <div data-validate="Please enter login">
+                <input id="login" type="text" name="username" placeholder="Username">
+                <span></span>
+            </div>
+            Password
+            <div data-validate = "Please enter password">
+                <input id="password"  type="password" name="password" placeholder="Password">
+                <span ></span>
+            </div>
+            <button id="button_registr">Registration</button>
+            </div>
+
+    </div>
+</div>
+<script>
+    $('#button_registr').click(function () {
+        var nameText = document.getElementById("name").value;
+        var loginText = document.getElementById("login").value;
+        var passwordText = document.getElementById("password").value;
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8090/registration",
+            data:{'name':nameText , 'login':loginText,'password':passwordText},
+            success:function (data){
+                console.log(data);
+                if(data.login===undefined){
+                    alert("Same login already exist")
+                }else {
+                    location.href='http://localhost:8090/login';
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

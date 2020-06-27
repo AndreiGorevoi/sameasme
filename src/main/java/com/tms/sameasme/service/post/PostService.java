@@ -1,7 +1,7 @@
 package com.tms.sameasme.service.post;
 
-import com.tms.sameasme.model.ETag;
-import com.tms.sameasme.model.Post;
+import com.tms.sameasme.model.tag.ETag;
+import com.tms.sameasme.model.post.Post;
 
 import java.util.List;
 

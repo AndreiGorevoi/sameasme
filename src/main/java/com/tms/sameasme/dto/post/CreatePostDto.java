@@ -1,6 +1,6 @@
 package com.tms.sameasme.dto.post;
 
-import com.tms.sameasme.model.Post;
+import com.tms.sameasme.model.post.Post;
 import lombok.Data;
 
 @Data

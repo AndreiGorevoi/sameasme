@@ -1,6 +1,6 @@
 package com.tms.sameasme.repository.tag;
 
-import com.tms.sameasme.model.Tag;
+import com.tms.sameasme.model.tag.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.tms.sameasme.service.post;
 
-import com.tms.sameasme.model.ETag;
-import com.tms.sameasme.model.Post;
+import com.tms.sameasme.model.tag.ETag;
+import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.repository.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

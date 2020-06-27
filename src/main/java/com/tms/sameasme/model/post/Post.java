@@ -1,6 +1,9 @@
-package com.tms.sameasme.model;
+package com.tms.sameasme.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tms.sameasme.model.BaseModel;
+import com.tms.sameasme.model.tag.Tag;
+import com.tms.sameasme.model.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +30,7 @@ public class Post extends BaseModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private  User user;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Tag tag;

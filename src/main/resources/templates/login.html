@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="text-align: center"  >
+    <div style="text-align: center" >
+        <form method="post" action="/login" >
+            <input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">
+            <span class="login100-form-title">
+						Sign In
+					</span>
+            <div th:if="${error!=null}">
+                <span style="background-color: red"><strong>Incorrect login or password!</strong></span>
+            </div>
+
+            <div data-validate="Please enter username">
+                <input type="text" name="username" placeholder="Username">
+                <span></span>
+            </div>
+
+            <div data-validate = "Please enter password">
+                <input  type="password" name="password" placeholder="Password">
+                <span ></span>
+            </div>
+
+            <div >
+						<span class="txt1">
+							Forgot
+						</span>
+
+                <a href="#" >
+                    Username / Password?
+                </a>
+            </div>
+
+            <div>
+                <button >
+                    Sign in
+                </button>
+
+            </div>
+            <div>
+            </div>
+
+            <div>
+						<span>
+							Don’t have an account?
+						</span>
+
+                <a href="/registration">
+                    Sign up now
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

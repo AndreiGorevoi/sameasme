@@ -1,7 +1,7 @@
 package com.tms.sameasme.repository.post;
 
-import com.tms.sameasme.model.ETag;
-import com.tms.sameasme.model.Post;
+import com.tms.sameasme.model.tag.ETag;
+import com.tms.sameasme.model.post.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
