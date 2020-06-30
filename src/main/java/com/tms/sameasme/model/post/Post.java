@@ -28,6 +28,21 @@ public class Post extends BaseModel {
     @Column
     private String matchDate;
 
+    @Column
+    private String contactNumber;
+
+    @Column
+    private String location;
+
+    @Column
+    private int amountOfPeople;
+
+    @Column
+    private double price;
+
+    @Column
+    private boolean showerPresent;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;

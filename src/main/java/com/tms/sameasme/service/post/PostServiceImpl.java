@@ -25,7 +25,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAllByTeg(ETag tag) {
+    public List<Post> findAllByTag(ETag tag) {
         return postRepository.findAllByTag(tag);
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PostService {
     List<Post> findAll();
-    List<Post> findAllByTeg(ETag tag);
+    List<Post> findAllByTag(ETag tag);
     Post findPostById(Long id);
     Post savePost(Post post);
 }

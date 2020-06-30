@@ -1,5 +1,6 @@
 package com.tms.sameasme.repository;
 
+import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.model.role.ERole;
 import com.tms.sameasme.model.role.Role;
 import com.tms.sameasme.model.tag.ETag;
@@ -74,7 +75,21 @@ public class InitData implements ApplicationListener {
             tagRepository.save(tag3);
             tagRepository.save(tag4);
 
-
+//            Set test post
+            Post post = new Post();
+            post.setCreateDate("28-06-20");
+            post.setDescription("We are finding player for football match!");
+            post.setImg("https://b.thumbs.redditmedia.com/h08KykXe47E3XVoHReDuQX4UpxPoklgsPRXIAwv2qQY.jpg");
+            post.setMatchDate("28-06-20/ 18:30");
+            post.setTitle("Football match!");
+            post.setContactNumber("+375447475477");
+            post.setLocation("FC Dinamo");
+            post.setPrice(5);
+            post.setShowerPresent(true);
+            post.setAmountOfPeople(5);
+            post.setTag(tagRepository.findTagByName(ETag.FOOTBALL));
+            post.setUser(userRepository.findUserByLogin("admin"));
+            postRepository.save(post);
 
         }
     }

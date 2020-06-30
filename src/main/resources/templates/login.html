@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Login V11</title>
+	<title>Login page</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -32,6 +32,9 @@
 					<span class="login100-form-title p-b-55">
 						Login
 					</span>
+					<div th:if="${error!=null}">
+						<span style="color:deeppink;font-family: Raleway-Black"><strong>Incorrect password or login </strong></span>
+					</div>
 
 					<div class="wrap-input100 validate-input m-b-16">
 						<input class="input100" type="text" name="username" placeholder="Login">
@@ -46,13 +49,13 @@
 						<span class="symbol-input100">
 						</span>
 					</div>
-
-					<div class="contact100-form-checkbox m-l-4">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
+<!--TODO?-->
+<!--					<div class="contact100-form-checkbox m-l-4">-->
+<!--						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">-->
+<!--						<label class="label-checkbox100" for="ckb1">-->
+<!--							Remember me-->
+<!--						</label>-->
+<!--					</div>-->
 					
 					<div class="container-login100-form-btn p-t-25">
 						<button class="login100-form-btn">

@@ -193,7 +193,51 @@ iframe {
   position: relative;
   z-index: 1;
 }
+.container-wall{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  background: #0250c5;
+  background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+  background: -o-linear-gradient(bottom, #0250c5, #d43f8d);
+  background: -moz-linear-gradient(bottom, #0250c5, #d43f8d);
+  background: linear-gradient(bottom, #0250c5, #d43f8d);
+}
+.wall-for-main_div{
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 
+}
+.one-post{
+  width: 95%;
+  min-height: 10vh;
+  background:lightyellow;
+}
+.img-post{
+  float: right;
+}
+.text-post{
+  margin-right: 110px;
+}
+.contact-number-text{
+  color: blue;
+}
+.money{
+  color: green;
+  font-weight: bold;
+}
+.h-post{
+  text-align: center;
+}
 .container-login100::before {
   content: "";
   display: block;

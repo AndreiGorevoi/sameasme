@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController(value = "/post")
+@RestController
+@RequestMapping("post")
 public class RestPostController extends BaseController {
 
     private final PostService postService;
@@ -36,8 +37,8 @@ public class RestPostController extends BaseController {
     }
 
     @PostMapping(value = "/getAllPostsByTeg")
-    public List<Post> getAllByTeg(@RequestParam ETag tag){
-        return postService.findAllByTeg(tag);
+    public List<Post> getAllByTeg(@RequestParam String tag){
+        return postService.findAllByTag(ETag.valueOf(tag));
     }
 
 }

@@ -16,14 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 @Controller
-public class LoginController extends BaseController {
+public class RedirectController extends BaseController {
 
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
     private final UserService userService;
 
     @Autowired
-    public LoginController(PasswordEncoder passwordEncoder, RoleService roleService, UserService userService) {
+    public RedirectController(PasswordEncoder passwordEncoder, RoleService roleService, UserService userService) {
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
         this.userService = userService;
@@ -31,7 +31,11 @@ public class LoginController extends BaseController {
 
     @GetMapping(value = "/")
     public String getMain(){
-        return "index";
+        return "greeting";
+    }
+    @GetMapping(value = "/wall")
+    public String getWall(){
+        return "wall";
     }
 
     @GetMapping(value = "/login")
@@ -63,5 +67,10 @@ public class LoginController extends BaseController {
         model.addAttribute("error","user already exist");
         return "registration";
 
+    }
+
+    @GetMapping(value = "/post/addPostForm")
+    public String getAddPostForm(){
+        return "addPostForm";
     }
 }
