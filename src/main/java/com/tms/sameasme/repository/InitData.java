@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.Date;
 
 @Repository
 @Transactional
@@ -77,10 +78,10 @@ public class InitData implements ApplicationListener {
 
 //            Set test post
             Post post = new Post();
-            post.setCreateDate("28-06-20");
+            post.setCreateDate(new Date());
             post.setDescription("We are finding player for football match!");
             post.setImg("https://b.thumbs.redditmedia.com/h08KykXe47E3XVoHReDuQX4UpxPoklgsPRXIAwv2qQY.jpg");
-            post.setMatchDate("28-06-20/ 18:30");
+            post.setMatchDate(new Date());
             post.setTitle("Football match!");
             post.setContactNumber("+375447475477");
             post.setLocation("FC Dinamo");

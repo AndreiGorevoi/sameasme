@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -15,31 +16,22 @@ import javax.persistence.*;
 public class Post extends BaseModel {
     @Column
     private String title;
-
     @Column
     private String description;
-
     @Column
     private String img;
-
     @Column
-    private String createDate;
-
+    private Date createDate;
     @Column
-    private String matchDate;
-
+    private Date matchDate;
     @Column
     private String contactNumber;
-
     @Column
     private String location;
-
     @Column
     private int amountOfPeople;
-
     @Column
     private double price;
-
     @Column
     private boolean showerPresent;
 

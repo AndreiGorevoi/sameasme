@@ -27,6 +27,12 @@
 
 <div class="limiter">
     <div class="container-wall">
+        <div th:if="${Admin}"  class="admin-panel">
+            <div>
+                <a href="#">delete post</a>
+                <a href="#">delete user</a>
+            </div>
+        </div>
         <a id="refresh" href="#">Refresh</a>
         <select id="select-tag">
             <option>FOOTBALL</option>
@@ -36,6 +42,7 @@
         </select>
         <button id="button-apply-filters">Apply filters</button>
         <button id="button-add-form-post">Add post</button>
+        <button id="button-sort-by-time">Sort by time</button>
         <div id="my-wall" class="wall-for-main_div"></div>
     </div>
 </div>

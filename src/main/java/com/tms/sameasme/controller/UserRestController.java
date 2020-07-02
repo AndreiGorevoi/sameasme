@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("user")
-public class RestUserController extends BaseController {
+public class UserRestController extends BaseController {
     private final UserRepository userRepository;
 
     @Autowired
-    public RestUserController(UserRepository userRepository) {
+    public UserRestController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

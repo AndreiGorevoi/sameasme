@@ -39,7 +39,18 @@ $('#button-apply-filters').click(function () {
 })
 
 $('#button-add-form-post').click(function () {
-    location.href="http://localhost:8080/post/addPostForm"
+    location.href="http://localhost:8080/addPostForm"
+})
+
+$('#button-sort-by-time').click(function () {
+    destroyChildren(document.getElementById('my-wall'));
+    $.ajax({
+        type:"GET",
+        url:"http://localhost:8080/post/getAllOrderByMatchDate",
+        success: function (data){
+            writePosts(data);
+        }
+    })
 })
 
 function destroyChildren(node)
@@ -81,7 +92,7 @@ function writePosts(data) {
            p1.innerText="Description: "+data[i].description +" When: "+ data[i].matchDate;
            p2.innerText="Number for vacation: " + data[i].contactNumber;
            p3.innerText="Cost: " + data[i].price +" BYR";
-           p4.innerText="Where: " + data[i].location;
+           p4.innerText="Where: " + new Date(data[i].location);
            aTag.innerText=data[i].tag.name;
            div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag);
            $('#my-wall').append(div);

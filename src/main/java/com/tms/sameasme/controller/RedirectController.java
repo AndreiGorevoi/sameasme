@@ -1,6 +1,7 @@
 package com.tms.sameasme.controller;
 
 import com.tms.sameasme.model.role.ERole;
+import com.tms.sameasme.model.role.Role;
 import com.tms.sameasme.model.user.User;
 import com.tms.sameasme.service.role.RoleService;
 import com.tms.sameasme.service.user.UserService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class RedirectController extends BaseController {
@@ -33,8 +35,17 @@ public class RedirectController extends BaseController {
     public String getMain(){
         return "greeting";
     }
+
     @GetMapping(value = "/wall")
-    public String getWall(){
+    public String getWall(Model model){
+        List<Role> roles = getUserRoles();
+        boolean admin = false;
+        for (Role role : roles) {
+            if(role.getName().toString()=="ADMIN"){
+                admin=true;
+            }
+        }
+        model.addAttribute("Admin", admin);
         return "wall";
     }
 
@@ -69,7 +80,7 @@ public class RedirectController extends BaseController {
 
     }
 
-    @GetMapping(value = "/post/addPostForm")
+    @GetMapping(value = "/addPostForm")
     public String getAddPostForm(){
         return "addPostForm";
     }

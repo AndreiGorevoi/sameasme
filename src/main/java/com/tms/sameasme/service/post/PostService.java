@@ -10,4 +10,6 @@ public interface PostService {
     List<Post> findAllByTag(ETag tag);
     Post findPostById(Long id);
     Post savePost(Post post);
+    List<Post> findAllOrOrderByMatchDate();
+    void deletePostById(Long id);
 }
