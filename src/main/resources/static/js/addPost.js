@@ -1,6 +1,6 @@
 $('#add-post-button').click(function () {
     var matchDate = new Date($('#id-match-date').val());
-    var createDate = new Date($('#id-create-date').val());
+    var createDate = new Date();
     if($('#id-shower-present').val()=="on"){
         var shower = true;
     }else {

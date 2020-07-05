@@ -39,7 +39,7 @@ $('#button-apply-filters').click(function () {
 })
 
 $('#button-add-form-post').click(function () {
-    location.href="http://localhost:8080/addPostForm"
+    location.href="http://localhost:8080/post/addPostForm"
 })
 
 $('#button-sort-by-time').click(function () {

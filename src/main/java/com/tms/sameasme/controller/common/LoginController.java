@@ -1,7 +1,7 @@
-package com.tms.sameasme.controller;
+package com.tms.sameasme.controller.common;
 
+import com.tms.sameasme.controller.BaseController;
 import com.tms.sameasme.model.role.ERole;
-import com.tms.sameasme.model.role.Role;
 import com.tms.sameasme.model.user.User;
 import com.tms.sameasme.service.role.RoleService;
 import com.tms.sameasme.service.user.UserService;
@@ -15,38 +15,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.List;
 
 @Controller
-public class RedirectController extends BaseController {
+public class LoginController extends BaseController {
 
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
     private final UserService userService;
 
     @Autowired
-    public RedirectController(PasswordEncoder passwordEncoder, RoleService roleService, UserService userService) {
+    public LoginController(PasswordEncoder passwordEncoder, RoleService roleService, UserService userService) {
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
         this.userService = userService;
-    }
-
-    @GetMapping(value = "/")
-    public String getMain(){
-        return "greeting";
-    }
-
-    @GetMapping(value = "/wall")
-    public String getWall(Model model){
-        List<Role> roles = getUserRoles();
-        boolean admin = false;
-        for (Role role : roles) {
-            if(role.getName().toString()=="ADMIN"){
-                admin=true;
-            }
-        }
-        model.addAttribute("Admin", admin);
-        return "wall";
     }
 
     @GetMapping(value = "/login")
@@ -80,8 +61,5 @@ public class RedirectController extends BaseController {
 
     }
 
-    @GetMapping(value = "/addPostForm")
-    public String getAddPostForm(){
-        return "addPostForm";
-    }
+
 }

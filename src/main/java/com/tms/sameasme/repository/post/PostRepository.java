@@ -19,7 +19,9 @@ public interface PostRepository extends JpaRepository<Post,Long> {
     @Query("select p from Post p order by p.matchDate desc")
     List<Post> findAllOrOrderByMatchDate();
 
-    @Query("delete from Post p where p.id=?1")
+//    @Query("delete from Post p where p.id=?1")
     void deleteById(Long id);
+
+
 
 }

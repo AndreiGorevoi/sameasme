@@ -1,5 +1,6 @@
-package com.tms.sameasme.controller;
+package com.tms.sameasme.controller.rest;
 
+import com.tms.sameasme.controller.BaseController;
 import com.tms.sameasme.model.user.User;
 import com.tms.sameasme.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

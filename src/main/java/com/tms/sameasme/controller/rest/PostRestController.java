@@ -1,5 +1,6 @@
-package com.tms.sameasme.controller;
+package com.tms.sameasme.controller.rest;
 
+import com.tms.sameasme.controller.BaseController;
 import com.tms.sameasme.dto.post.CreatePostDto;
 import com.tms.sameasme.model.tag.ETag;
 import com.tms.sameasme.model.post.Post;

@@ -45,7 +45,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void deletePostById(Long id) {
+    public boolean deletePostById(Long id) {
         postRepository.deleteById(id);
+        return true;
     }
 }

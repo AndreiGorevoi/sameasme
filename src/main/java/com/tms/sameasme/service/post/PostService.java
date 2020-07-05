@@ -11,5 +11,5 @@ public interface PostService {
     Post findPostById(Long id);
     Post savePost(Post post);
     List<Post> findAllOrOrderByMatchDate();
-    void deletePostById(Long id);
+    boolean deletePostById(Long id);
 }
