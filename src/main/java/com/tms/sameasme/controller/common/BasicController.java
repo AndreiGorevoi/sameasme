@@ -20,12 +20,17 @@ public class BasicController extends BaseController {
     public String getWall(Model model){
         List<Role> roles = getUserRoles();
         boolean admin = false;
+        boolean moderator = false;
         for (Role role : roles) {
             if(role.getName().toString()=="ADMIN"){
                 admin=true;
             }
+            if(role.getName().toString().equals("MODERATOR")){
+                moderator=true;
+            }
         }
         model.addAttribute("Admin", admin);
+        model.addAttribute("moderator", moderator);
         return "wall";
     }
 }

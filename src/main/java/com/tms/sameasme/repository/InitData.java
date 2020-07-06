@@ -59,8 +59,15 @@ public class InitData implements ApplicationListener {
             user.setLogin("admin");
             user.setPassword(passwordEncoder.encode("admin"));
             user.setName("admin");
-            user.setRoles(Arrays.asList(roleAdmin));
-            userRepository.save(user);
+            user.setRoles(Arrays.asList(roleAdmin,roleUser));
+
+            User user2 = new User();
+            user2.setLogin("user");
+            user2.setPassword(passwordEncoder.encode("user"));
+            user2.setName("user");
+            user2.setRoles(Arrays.asList(roleUser));
+
+            userRepository.saveAll(Arrays.asList(user,user2));
 
             //          Set basic tags
             Tag tag1 = new Tag();

@@ -6,6 +6,9 @@ $.ajax({
     data: {'id': idForDelete},
     success:function (data){
         console.log(data);
+        if(data==true){
+            alert("Post has been deleted")
+        }
     },
     error:function (e) {
         alert("something wrong")

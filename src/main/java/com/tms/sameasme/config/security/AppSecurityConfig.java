@@ -34,9 +34,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/css/**", "/js/**", "/images/**","/fonts/**",
                         "/images/**","/js/**","/vendor/**").permitAll()
+                .antMatchers("/admin/deletePostForm").hasAnyRole("MODERATOR","ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll();
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/wall",true);
 
         http.csrf()
                 .disable()

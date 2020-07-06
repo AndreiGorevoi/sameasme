@@ -48,7 +48,7 @@ public class PostRestController extends BaseController {
 
     @PostMapping(value = "/getAllPostsByTeg")
     public List<Post> getAllByTeg(@RequestParam String tag){
-        return postService.findAllByTag(ETag.valueOf(tag));
+        return (tag.equals("ALL")) ? postService.findAll() : postService.findAllByTag(ETag.valueOf(tag));
     }
 
 }

@@ -89,10 +89,11 @@ function writePosts(data) {
            p3.setAttribute("class","money text-post");
            p4.setAttribute("class","location text-post");
            h.innerText=data[i].title;
-           p1.innerText="Description: "+data[i].description +" When: "+ data[i].matchDate;
+           var dateWrite = new Date(data[i].matchDate);
+           p1.innerText="Description: "+data[i].description +" When: "+ dateWrite;
            p2.innerText="Number for vacation: " + data[i].contactNumber;
            p3.innerText="Cost: " + data[i].price +" BYR";
-           p4.innerText="Where: " + new Date(data[i].location);
+           p4.innerText="Where: " + data[i].location;
            aTag.innerText=data[i].tag.name;
            div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag);
            $('#my-wall').append(div);

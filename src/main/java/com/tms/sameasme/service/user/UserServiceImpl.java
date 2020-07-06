@@ -1,20 +1,26 @@
 package com.tms.sameasme.service.user;
 
+import com.tms.sameasme.model.role.ERole;
+import com.tms.sameasme.model.role.Role;
 import com.tms.sameasme.model.user.User;
+import com.tms.sameasme.repository.role.RoleRepository;
 import com.tms.sameasme.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -31,5 +37,54 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Long id) {
 
         return userRepository.findUserById(id);
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+      userRepository.deleteById(id);
+      return true;
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public boolean addRoleToUser(Long id, ERole role) {
+        User user = userRepository.findUserById(id);
+        List<Role> userRoles = user.getRoles();
+        boolean flag = true;
+        for (Role userRole : userRoles) {
+            if(userRole.getName().equals(role)){
+                flag=false;
+            };
+        }
+        if(flag){
+            userRoles.add(roleRepository.getRoleByName(role));
+            user.setRoles(userRoles);
+           userRepository.save(user);
+           return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteRoleToUser(Long id, ERole role) {
+        User user = userRepository.findUserById(id);
+        List<Role> userRoles = user.getRoles();
+        boolean flag = false;
+        for (Role userRole : userRoles) {
+            if(userRole.getName().equals(role)){
+                flag=true;
+            }
+        }
+        if(flag){
+            userRoles.remove(roleRepository.getRoleByName(role));
+            user.setRoles(userRoles);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 }

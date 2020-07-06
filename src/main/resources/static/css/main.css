@@ -206,17 +206,7 @@ iframe {
   background: -moz-linear-gradient(bottom, #0250c5, #d43f8d);
   background: linear-gradient(bottom, #0250c5, #d43f8d);
 }
-.wall-for-main_div{
-  width: 80%;
-  height: 80%;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
 
-}
 .one-post{
   width: 95%;
   min-height: 10vh;
@@ -272,6 +262,26 @@ iframe {
   margin-right: 0em;
   border: 1px solid orange;
   background: #fff5d7;
+}
+.filter-panel{
+  max-width: 80%; /* блок занимает ширину родителя, max-width её ограничивает */
+  min-height: 2em;
+  margin-left: 8em;
+  margin-right: auto;
+  background: #0250c5;
+  background: -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+  background: -o-linear-gradient(bottom, #0250c5, #d43f8d);
+  background: -moz-linear-gradient(bottom, #0250c5, #d43f8d);
+  background: linear-gradient(bottom, #0250c5, #d43f8d);
+}
+.wall-for-main_div{
+  max-width: 80%; /* блок занимает ширину родителя, max-width её ограничивает */
+  /*min-height: 100em;*/
+  margin-top: 6em;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff5d7;
+
 }
 
 /*------------------------------------------------------------------
