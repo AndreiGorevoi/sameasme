@@ -1,11 +1,13 @@
 package com.tms.sameasme.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tms.sameasme.model.BaseModel;
 import com.tms.sameasme.model.tag.Tag;
 import com.tms.sameasme.model.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -36,10 +38,26 @@ public class Post extends BaseModel {
     private boolean showerPresent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Tag tag;
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", img='" + img + '\'' +
+                ", createDate=" + createDate +
+                ", matchDate=" + matchDate +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", location='" + location + '\'' +
+                ", amountOfPeople=" + amountOfPeople +
+                ", price=" + price +
+                ", showerPresent=" + showerPresent +
+                ", tag=" + tag +
+                '}';
+    }
 }

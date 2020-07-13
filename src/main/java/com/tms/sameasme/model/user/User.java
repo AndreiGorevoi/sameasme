@@ -1,14 +1,14 @@
 package com.tms.sameasme.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tms.sameasme.model.BaseModel;
+import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.model.role.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -28,4 +28,16 @@ public class User extends BaseModel {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Post> posts;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

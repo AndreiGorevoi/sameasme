@@ -3,7 +3,11 @@ $(document).ready(function () {
         type:"GET",
         url:"http://localhost:8080/post/getAllPosts",
         success: function (data) {
+            console.log(data);
           writePosts(data);
+        },
+        error:function (e) {
+            console.log(e);
         }
     })
 })
@@ -53,6 +57,21 @@ $('#button-sort-by-time').click(function () {
     })
 })
 
+$('#button-calendar-sort').click(function () {
+    var dateFrom =new Date($('#form-date-match-filter').val());
+    var dateTo = new Date($('#to-date-match-filter').val());
+
+    $.ajax({
+        type:"POST",
+        url:"http://localhost:8080/post/dateFilter",
+        data: {'fromDate': dateFrom, 'toDate': dateTo},
+        success: function (data){
+            destroyChildren(document.getElementById('my-wall'));
+            writePosts(data);
+        }
+    })
+})
+
 function destroyChildren(node)
 {
     while (node.firstChild)
@@ -77,6 +96,8 @@ function writePosts(data) {
            var p2 = document.createElement("P");
            var p3 = document.createElement("P");
            var p4 = document.createElement("P");
+           var p5 = document.createElement("P");
+           var p6 = document.createElement("P");
            var br = document.createElement("BR")
            var img = document.createElement("IMG")
            var aTag = document.createElement("A")
@@ -94,8 +115,10 @@ function writePosts(data) {
            p2.innerText="Number for vacation: " + data[i].contactNumber;
            p3.innerText="Cost: " + data[i].price +" BYR";
            p4.innerText="Where: " + data[i].location;
+           p5.innerText="Post id: " + data[i].id;
+           p6.innerText="Post owner: " + data[i].user.login;
            aTag.innerText=data[i].tag.name;
-           div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag);
+           div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6);
            $('#my-wall').append(div);
        }
    }

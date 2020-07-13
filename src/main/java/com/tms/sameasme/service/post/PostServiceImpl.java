@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 @Transactional
 @Service
@@ -20,17 +21,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAll() {
+    public List<Post> getAll() {
         return postRepository.findAll();
     }
 
     @Override
-    public List<Post> findAllByTag(ETag tag) {
+    public List<Post> getAllByTag(ETag tag) {
         return postRepository.findAllByTag(tag);
     }
 
     @Override
-    public Post findPostById(Long id) {
+    public Post getPostById(Long id) {
         return postRepository.findPostById(id);
     }
 
@@ -40,7 +41,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findAllOrOrderByMatchDate() {
+    public List<Post> getAllOrOrderByMatchDate() {
         return postRepository.findAllOrOrderByMatchDate();
     }
 
@@ -48,5 +49,14 @@ public class PostServiceImpl implements PostService {
     public boolean deletePostById(Long id) {
         postRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<Post> getAllFromToDate(Date fromDate, Date toDate) {
+        Date fromDateModify = new Date();
+        Date toDateModify = new Date();
+        fromDateModify.setTime(fromDate.getTime()-10799999);
+        toDateModify.setTime(toDate.getTime()+75599999);
+        return postRepository.findAllByMatchTime(fromDateModify,toDateModify);
     }
 }

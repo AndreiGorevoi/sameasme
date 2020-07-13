@@ -29,8 +29,8 @@
     <div class="container-wall">
         <div th:if="${Admin}"  class="admin-panel">
             <div>
-                <a href="/admin/deletePostForm">delete post</a> <br>
-                <a href="/admin/createUserForm">users</a>
+                <a href="/admin/refactorPostForm">delete post</a> <br>
+                <a href="/admin/refactorUserForm">users</a>
             </div>
         </div>
         <div th:if="${moderator}"  class="admin-panel">
@@ -50,11 +50,17 @@
             <button id="button-apply-filters">Apply filters</button>
             <button id="button-add-form-post">Add post</button>
             <button id="button-sort-by-time">Sort by time</button>
+            <span>From</span>
+            <input type="date" id="form-date-match-filter">
+            <span>To</span>
+            <input type="date" id="to-date-match-filter">
+            <button style="margin-left: 5px" id="button-calendar-sort">Find match</button>
         </div>
 
         <div id="my-wall" class="wall-for-main_div"></div>
     </div>
 </div>
+
 
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

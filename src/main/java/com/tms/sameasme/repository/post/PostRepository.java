@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -21,7 +22,7 @@ public interface PostRepository extends JpaRepository<Post,Long> {
 
 //    @Query("delete from Post p where p.id=?1")
     void deleteById(Long id);
-
-
+    @Query("from Post p where p.matchDate>=?1 and p.matchDate<=?2")
+    List<Post> findAllByMatchTime(Date startPeriod, Date endPeriod);
 
 }

@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "admin")
 public class AdminController extends BaseController {
 
-    @GetMapping(value = "deletePostForm")
+    @GetMapping(value = "refactorPostForm")
     public String getDeletePostForm(){
-        return "deletePostForm";
+        return "refactorPostForm";
     }
 
-    @GetMapping(value = "createUserForm")
+    @GetMapping(value = "refactorUserForm")
     public String getDeleteUserForm(){
-        return "createUserForm";
+        return "refactorUserForm";
     }
 
 
