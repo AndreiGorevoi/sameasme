@@ -87,7 +87,7 @@ public class InitData implements ApplicationListener {
             Post post = new Post();
             post.setCreateDate(new Date());
             post.setDescription("We are finding player for football match!");
-            post.setImg("https://b.thumbs.redditmedia.com/h08KykXe47E3XVoHReDuQX4UpxPoklgsPRXIAwv2qQY.jpg");
+            post.setImg("http://images-on-off.com/images/51/kaknazivayutitalyanskixlyubiteleyfutbola-64aaa4af.jpg");
             post.setMatchDate(new Date());
             post.setTitle("Football match!");
             post.setContactNumber("+375447475477");

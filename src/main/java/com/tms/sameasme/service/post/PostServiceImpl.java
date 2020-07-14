@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 @Transactional
 @Service
 public class PostServiceImpl implements PostService {
@@ -41,8 +41,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getAllOrOrderByMatchDate() {
-        return postRepository.findAllOrOrderByMatchDate();
+    public List<Post> getAllOrderedByMatchDate() {
+        return postRepository.findAllOrderByMatchDate();
+    }
+
+    @Override
+    public List<Post> getAllOrderedByCreateDate() {
+        return postRepository.findAllOrderByCreateDate();
     }
 
     @Override
@@ -53,10 +58,29 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAllFromToDate(Date fromDate, Date toDate) {
+        //        set date time from 00:00 to 23:59
         Date fromDateModify = new Date();
         Date toDateModify = new Date();
         fromDateModify.setTime(fromDate.getTime()-10799999);
         toDateModify.setTime(toDate.getTime()+75599999);
-        return postRepository.findAllByMatchTime(fromDateModify,toDateModify);
+        List<Post> postList = postRepository.findAllByMatchTime(fromDateModify,toDateModify);
+        //Sort by date
+         postList.sort(Comparator.comparing(Post::getCreateDate));
+        Collections.reverse(postList);
+         return postList;
+    }
+
+    @Override
+    public List<Post> getPostFromToDateByTag(ETag tag, Date fromDate, Date toDate) {
+        //        set date time from 00:00 to 23:59
+        Date fromDateModify = new Date();
+        Date toDateModify = new Date();
+        fromDateModify.setTime(fromDate.getTime()-10799999);
+        toDateModify.setTime(toDate.getTime()+75599999);
+        List<Post> postList = postRepository.findPostsByMatchTimeAndTag(tag, fromDateModify, toDateModify);
+        //Sort by date
+        postList.sort(Comparator.comparing(Post::getCreateDate));
+        Collections.reverse(postList);
+        return postList;
     }
 }

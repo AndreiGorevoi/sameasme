@@ -263,6 +263,15 @@ iframe {
   border: 1px solid orange;
   background: #fff5d7;
 }
+.logout_panel{
+  max-width: 8em; /* блок занимает ширину родителя, max-width её ограничивает */
+  min-height: 2em;
+  margin-top: 3em;
+  margin-left: auto;
+  margin-right: 0em;
+  border: 1px solid orange;
+  background: #fff5d7;
+}
 .filter-panel{
   max-width: 80%; /* блок занимает ширину родителя, max-width её ограничивает */
   min-height: 2em;

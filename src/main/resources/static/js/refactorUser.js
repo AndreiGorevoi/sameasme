@@ -21,7 +21,7 @@ $('#button-list-of-users').click(function () {
     destroyChildren(document.getElementById('block-for-users-list'))
 $.ajax({
     type:"GET",
-    url:"http://localhost:8080/user/getAllUsers",
+    url:"http://localhost:8080/user/all",
     success:function (data) {
         var divElement = $('#block-for-users-list');
         var table = document.createElement("TABLE");

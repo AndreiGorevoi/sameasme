@@ -20,7 +20,7 @@ $('#button-get-all-posts').click(function () {
     destroyChildren(document.getElementById('div-get-all-posts'))
     $.ajax({
         type:"GET",
-        url:"http://localhost:8080/post/getAllPosts",
+        url:"http://localhost:8080/post/all",
         success:function (data) {
             var divElement = $('#div-get-all-posts');
             var table = document.createElement("TABLE");

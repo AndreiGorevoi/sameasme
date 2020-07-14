@@ -18,11 +18,17 @@ public interface PostRepository extends JpaRepository<Post,Long> {
     Post findPostById(Long id);
 
     @Query("select p from Post p order by p.matchDate desc")
-    List<Post> findAllOrOrderByMatchDate();
+    List<Post> findAllOrderByMatchDate();
+
+    @Query("select p from Post p order by p.createDate desc")
+    List<Post> findAllOrderByCreateDate();
 
 //    @Query("delete from Post p where p.id=?1")
     void deleteById(Long id);
     @Query("from Post p where p.matchDate>=?1 and p.matchDate<=?2")
     List<Post> findAllByMatchTime(Date startPeriod, Date endPeriod);
+
+    @Query("from Post p where p.tag.name=?1 and p.matchDate>=?2 and p.matchDate<=?3 ")
+    List<Post> findPostsByMatchTimeAndTag(ETag tag,Date startPeriod, Date endPeriod);
 
 }

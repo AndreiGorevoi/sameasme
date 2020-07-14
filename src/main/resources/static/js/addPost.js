@@ -23,7 +23,7 @@ var newPost={
 }
 $.ajax({
     type:"POST",
-    url:"http://localhost:8080/post/addPost",
+    url:"http://localhost:8080/post/add",
     data:JSON.stringify(newPost),
     contentType:"application/json",
     success:function (data){

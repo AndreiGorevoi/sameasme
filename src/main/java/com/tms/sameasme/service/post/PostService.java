@@ -11,7 +11,9 @@ public interface PostService {
     List<Post> getAllByTag(ETag tag);
     Post getPostById(Long id);
     Post savePost(Post post);
-    List<Post> getAllOrOrderByMatchDate();
+    List<Post> getAllOrderedByMatchDate();
+    List<Post> getAllOrderedByCreateDate();
     boolean deletePostById(Long id);
     List<Post> getAllFromToDate(Date fromDate, Date toDate);
+    List<Post> getPostFromToDateByTag(ETag tag, Date fromDate, Date toDate);
 }

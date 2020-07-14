@@ -29,24 +29,24 @@ public class PostRestController extends BaseController {
         this.tagRepository = tagRepository;
     }
 
-    @PostMapping(value = "/addPost")
+    @PostMapping(value = "/add")
     public Post addPost(@RequestBody CreatePostDto dto){
         Post post = dto.updatePost(dto);
         post.setUser(userService.findUserById(getUserId()));
         post.setTag(tagRepository.findTagByName(dto.getTag()));
         return postService.savePost(post);
     }
-    @GetMapping(value = "/getAllPosts")
+    @GetMapping(value = "/all")
    public List<Post> getAllPosts(){
-        return postService.getAllOrOrderByMatchDate();
+        return postService.getAllOrderedByCreateDate();
     }
 
-    @GetMapping(value = "/getAllOrderByMatchDate")
+    @GetMapping(value = "/allOrdered")
     public List<Post> getAllPostsOrderByMatchDate(){
-        return postService.getAllOrOrderByMatchDate();
+        return postService.getAllOrderedByMatchDate();
     }
 
-    @PostMapping(value = "/getAllPostsByTeg")
+    @PostMapping(value = "/byTeg")
     public List<Post> getAllByTeg(@RequestParam String tag){
         return (tag.equals("ALL")) ? postService.getAll() : postService.getAllByTag(ETag.valueOf(tag));
     }
@@ -54,5 +54,18 @@ public class PostRestController extends BaseController {
     @PostMapping(value = "/dateFilter")
     public List<Post> getPostsFilterByDate(@RequestParam Date fromDate, @RequestParam Date toDate){
         return postService.getAllFromToDate(fromDate,toDate);
+    }
+
+    @PostMapping(value = "/filtered")
+    public List<Post> getPostsByAllFilters(@RequestParam String tag,
+                                           @RequestParam Date fromDate,
+                                           @RequestParam Date toDate
+                                           )
+    {
+        if(tag.equalsIgnoreCase("ALL")){
+            return postService.getAllFromToDate(fromDate,toDate);
+        }else {
+            return postService.getPostFromToDateByTag(ETag.valueOf(tag),fromDate,toDate);
+        }
     }
 }

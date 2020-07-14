@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $.ajax({
         type:"GET",
-        url:"http://localhost:8080/post/getAllPosts",
+        url:"http://localhost:8080/post/all",
         success: function (data) {
             console.log(data);
           writePosts(data);
@@ -21,7 +21,7 @@ $('#refresh').click(function () {
     destroyChildren(document.getElementById('my-wall'));
     $.ajax({
         type:"GET",
-        url:"http://localhost:8080/post/getAllPosts",
+        url:"http://localhost:8080/post/all",
         success: function (data) {
            writePosts(data);
 
@@ -31,11 +31,24 @@ $('#refresh').click(function () {
 
 $('#button-apply-filters').click(function () {
     destroyChildren(document.getElementById('my-wall'));
+    var dateFrom;
+    var dateTo;
     var tag = $('#select-tag').val();
+    if($('#form-date-match-filter').val()==="" ){
+        dateFrom=new Date("2000-01-01");
+    }else {
+       dateFrom=new Date($('#form-date-match-filter').val());
+    }
+
+    if($('#to-date-match-filter').val()===""){
+        dateTo=new Date("2050-01-01");
+    }else{
+        dateTo=new Date($('#to-date-match-filter').val());
+    }
     $.ajax({
         type:"POST",
-        url:"http://localhost:8080/post/getAllPostsByTeg",
-        data: {'tag': tag},
+        url:"http://localhost:8080/post/filtered",
+        data: {'tag': tag,'fromDate' : dateFrom, 'toDate':dateTo},
         success: function (data){
            writePosts(data);
         }
@@ -50,7 +63,7 @@ $('#button-sort-by-time').click(function () {
     destroyChildren(document.getElementById('my-wall'));
     $.ajax({
         type:"GET",
-        url:"http://localhost:8080/post/getAllOrderByMatchDate",
+        url:"http://localhost:8080/post/allOrdered",
         success: function (data){
             writePosts(data);
         }
@@ -70,6 +83,14 @@ $('#button-calendar-sort').click(function () {
             writePosts(data);
         }
     })
+})
+
+$('#logout-link').click(function () {
+    if(confirm("Are you sure you want log out?")){
+        location.href="http://localhost:8080/logout";
+    }else {
+        console.log("stay")
+    }
 })
 
 function destroyChildren(node)
