@@ -18,6 +18,11 @@ public class BaseController {
         return appUser.getId();
     }
 
+    public String getUserName(){
+        AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return appUser.getName();
+    }
+
     public List<Role> getUserRoles(){
         AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return appUser.getRoleList();

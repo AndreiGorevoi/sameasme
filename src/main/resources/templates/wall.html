@@ -27,13 +27,16 @@
 
 <div class="limiter">
     <div class="container-wall">
-        <div th:if="${Admin}"  class="admin-panel">
+        <div class="user-panel">
+            <span th:text="Hello  + ${#session.getAttribute('userName')}">Hello user</span>
+        </div>
+        <div th:if="${Admin}" class="admin-panel">
             <div>
                 <a href="/admin/refactorPostForm">delete post</a> <br>
                 <a href="/admin/refactorUserForm">users</a>
             </div>
         </div>
-        <div th:if="${moderator}"  class="admin-panel">
+        <div th:if="${moderator}" class="admin-panel">
             <div>
                 <a href="/admin/refactorPostForm">delete post</a>
             </div>
