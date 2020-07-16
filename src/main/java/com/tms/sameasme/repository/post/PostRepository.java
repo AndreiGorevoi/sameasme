@@ -11,24 +11,25 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post,Long> {
-    @Query("from Post p where p.tag.name=?1")
+    @Query("from Post p where p.tag.name=?1 and p.active=true")
     List<Post> findAllByTag(ETag tag);
 
-    @Query("from Post p where p.id=?1")
+    @Query("from Post p where p.id=?1 and p.active=true")
     Post findPostById(Long id);
 
-    @Query("select p from Post p order by p.matchDate desc")
+    @Query("select p from Post p where p.active=true order by p.matchDate desc")
     List<Post> findAllOrderByMatchDate();
 
-    @Query("select p from Post p order by p.createDate desc")
+    @Query("select p from Post p where p.active=true order by p.createDate desc")
     List<Post> findAllOrderByCreateDate();
 
 //    @Query("delete from Post p where p.id=?1")
     void deleteById(Long id);
-    @Query("from Post p where p.matchDate>=?1 and p.matchDate<=?2")
+
+    @Query("from Post p where p.matchDate>=?1 and p.matchDate<=?2 and p.active=true")
     List<Post> findAllByMatchTime(Date startPeriod, Date endPeriod);
 
-    @Query("from Post p where p.tag.name=?1 and p.matchDate>=?2 and p.matchDate<=?3 ")
+    @Query("from Post p where p.tag.name=?1 and p.matchDate>=?2 and p.matchDate<=?3 and p.active=true")
     List<Post> findPostsByMatchTimeAndTag(ETag tag,Date startPeriod, Date endPeriod);
 
 }
