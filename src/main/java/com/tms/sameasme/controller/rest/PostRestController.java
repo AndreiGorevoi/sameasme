@@ -41,6 +41,11 @@ public class PostRestController extends BaseController {
         return postService.getAllOrderedByCreateDate();
     }
 
+    @GetMapping(value = "/user")
+    public List<Post> getPostForUser(){
+        return postService.getPostsByUserId(getUserId());
+    }
+
     @GetMapping(value = "/allOrdered")
     public List<Post> getAllPostsOrderByMatchDate(){
         return postService.getAllOrderedByMatchDate();
@@ -67,5 +72,18 @@ public class PostRestController extends BaseController {
         }else {
             return postService.getPostFromToDateByTag(ETag.valueOf(tag),fromDate,toDate);
         }
+    }
+
+    @GetMapping(value = "/{id}")
+    public String deleteUserPost(@PathVariable Long id){
+        Post postToDelete = postService.getPostById(id);
+        if(postToDelete.getUser().getId().equals(getUserId())){
+            postToDelete.setActive(false);
+            postService.savePost(postToDelete);
+            return "fine!";
+        }else {
+            return "there is not your post MAN!";
+        }
+
     }
 }

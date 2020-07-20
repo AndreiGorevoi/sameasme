@@ -3,22 +3,17 @@ $(document).ready(function () {
         type:"GET",
         url:"http://localhost:8080/post/all",
         success: function (data) {
-            console.log(data);
           writePosts(data);
         },
         error:function (e) {
-            console.log(e);
+            alert("Something wrong")
+            console.log(e)
         }
     })
 })
 
-
-
-
 $('#refresh').click(function () {
-    // TODO
-    // destroyChildren($('#my-wall').get());
-    destroyChildren(document.getElementById('my-wall'));
+    destroyChildren($('#my-wall')[0]);
     $.ajax({
         type:"GET",
         url:"http://localhost:8080/post/all",
@@ -30,7 +25,7 @@ $('#refresh').click(function () {
 })
 
 $('#button-apply-filters').click(function () {
-    destroyChildren(document.getElementById('my-wall'));
+    destroyChildren($('#my-wall')[0]);
     var dateFrom;
     var dateTo;
     var tag = $('#select-tag').val();
@@ -56,11 +51,11 @@ $('#button-apply-filters').click(function () {
 })
 
 $('#button-add-form-post').click(function () {
-    location.href="http://localhost:8080/post/addPostForm"
+    location.href="http://localhost:8080/post/add"
 })
 
 $('#button-sort-by-time').click(function () {
-    destroyChildren(document.getElementById('my-wall'));
+    destroyChildren($('#my-wall')[0]);
     $.ajax({
         type:"GET",
         url:"http://localhost:8080/post/allOrdered",
@@ -79,7 +74,7 @@ $('#button-calendar-sort').click(function () {
         url:"http://localhost:8080/post/dateFilter",
         data: {'fromDate': dateFrom, 'toDate': dateTo},
         success: function (data){
-            destroyChildren(document.getElementById('my-wall'));
+            destroyChildren($('#my-wall')[0]);
             writePosts(data);
         }
     })
@@ -93,6 +88,21 @@ $('#logout-link').click(function () {
     }
 })
 
+$('#link-get-my-posts').click(function () {
+    destroyChildren($('#my-wall')[0]);
+    $.ajax({
+        type:"GET",
+        url:"http://localhost:8080/post/user",
+        success: function (data) {
+            writePosts(data);
+        },
+        error:function (e) {
+            alert("Something wrong")
+            console.log(e);
+        }
+    })
+})
+
 function destroyChildren(node)
 {
     while (node.firstChild)
@@ -100,6 +110,7 @@ function destroyChildren(node)
 }
 
 function writePosts(data) {
+    var actuallyUser = $('#span-actually-user').data('value');
    if(data.length==0){
        var div = document.createElement("DIV");
        div.setAttribute("class","one-post")
@@ -110,6 +121,7 @@ function writePosts(data) {
        $('#my-wall').append(div);
    }else {
        for(var i=0;i<data.length;i++){
+           var writeDeleteOrNot = false;
            var div = document.createElement("DIV");
            div.setAttribute("class","one-post")
            var h = document.createElement("H4");
@@ -119,6 +131,14 @@ function writePosts(data) {
            var p4 = document.createElement("P");
            var p5 = document.createElement("P");
            var p6 = document.createElement("P");
+           if(actuallyUser===data[i].user.login){
+               writeDeleteOrNot=true;
+               var aDelete = document.createElement("A");
+               aDelete.setAttribute("id","aDelete-post");
+               aDelete.setAttribute("class","aDelete-post");
+               aDelete.setAttribute("href","post/"+data[i].id);
+               aDelete.innerText="delete X";
+           }
            var br = document.createElement("BR")
            var img = document.createElement("IMG")
            var aTag = document.createElement("A")
@@ -139,7 +159,11 @@ function writePosts(data) {
            p5.innerText="Post id: " + data[i].id;
            p6.innerText="Post owner: " + data[i].user.login;
            aTag.innerText=data[i].tag.name;
-           div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6);
+           if(writeDeleteOrNot){
+               div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6,aDelete);
+           }else {
+               div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6);
+           }
            $('#my-wall').append(div);
        }
    }

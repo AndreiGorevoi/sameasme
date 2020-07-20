@@ -28,21 +28,22 @@
 <div class="limiter">
     <div class="container-wall">
         <div class="user-panel">
-            <span th:text="Hello  + ${#session.getAttribute('userName')}">Hello user</span>
+            <span id="span-actually-user" th:attr="data-value=${#session.getAttribute('userName')}" th:text="Hello+ ' ' + ${#session.getAttribute('userName')}">Hello user</span>
+            <br>
+            <a href="#" id="link-get-my-posts">My posts</a>
+            <br>
+            <a href="#" id="logout-link">Log out</a>
         </div>
-        <div th:if="${Admin}" class="admin-panel">
+        <div th:if="${#session.getAttribute('admin')}" class="admin-panel">
             <div>
-                <a href="/admin/refactorPostForm">delete post</a> <br>
-                <a href="/admin/refactorUserForm">users</a>
+                <a href="/admin/post">delete post</a> <br>
+                <a href="/admin/user">users</a>
             </div>
         </div>
-        <div th:if="${moderator}" class="admin-panel">
+        <div th:if="${#session.getAttribute('moderator')}" class="admin-panel">
             <div>
-                <a href="/admin/refactorPostForm">delete post</a>
+                <a href="/admin/post">delete post</a>
             </div>
-        </div>
-        <div class="logout_panel">
-            <a id="logout-link">Log out</a>
         </div>
         <div class="filter-panel">
             <a id="refresh" href="#">Refresh</a>
@@ -80,7 +81,7 @@
 <script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 <!--===============================================================================================-->
 <script src="wall.js"></script>
 </body>

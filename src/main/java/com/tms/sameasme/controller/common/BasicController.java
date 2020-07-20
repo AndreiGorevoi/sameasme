@@ -19,7 +19,7 @@ public class BasicController extends BaseController {
     }
 
     @GetMapping(value = "/wall")
-    public String getWall(Model model, HttpServletRequest request){
+    public String getWall(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.setAttribute("userName", getUserName());
         List<Role> roles = getUserRoles();
@@ -33,8 +33,8 @@ public class BasicController extends BaseController {
                 moderator=true;
             }
         }
-        model.addAttribute("Admin", admin);
-        model.addAttribute("moderator", moderator);
+        session.setAttribute("admin",admin);
+        session.setAttribute("moderator",moderator);
         return "wall";
     }
 }

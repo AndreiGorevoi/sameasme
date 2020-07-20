@@ -9,7 +9,7 @@ public interface UserService {
     User addUser(User user);
     User findUserByLogin(String login);
     User findUserById(Long id);
-    boolean deleteById(Long id);
+    List<User> deleteById(Long id);
     List<User> findAll();
     boolean addRoleToUser(Long id, ERole role);
     boolean deleteRoleToUser(Long id, ERole role);

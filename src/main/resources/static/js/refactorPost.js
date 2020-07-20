@@ -2,7 +2,7 @@ $('#delete-post-button').click(function () {
     var idForDelete = $('#id-for-delete-input').val();
 $.ajax({
     type:"DELETE",
-    url:"http://localhost:8080/admin/deletePost",
+    url:"http://localhost:8080/admin/post",
     data: {'id': idForDelete},
     success:function (data){
         console.log(data);

@@ -3,34 +3,18 @@
 <head>
     <title>Delete user</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
-<div class="wrapper-add-post">
+<div class="alert alert-primary">
     <span>Form for delete user</span>
-    <div style="border: solid" class="box-delete-post" >
-        <span>Id:</span>
-        <input id="id-for-delete-input" type="number">
-        <button id="delete-user-button">Delete user</button>
-    </div>
-    <span>Change role for user</span>
-    <div style="border: solid">
-        <span>Id</span>
-        <input id="id-user-change-role-input" type="number">
-        <select id="select-user-change-role" >
-            <option>ADMIN</option>
-            <option>MODERATOR</option>
-            <option>USER</option>
-        </select>
-        <button id="change-user-role-button">add role</button>
-        <button id="change-user-role-button-delete">delete role</button>
-    </div>
     <div style="text-align: center">
         <a href="/wall"> Go to main</a>
     </div>
 
     <div>
-        <button id="button-list-of-users">List of users</button>
+        <button class="btn btn-info" id="button-list-of-users">List of users</button>
     </div>
     <div id="block-for-users-list"></div>
 </div>

@@ -16,4 +16,5 @@ public interface PostService {
     boolean deletePostById(Long id);
     List<Post> getAllFromToDate(Date fromDate, Date toDate);
     List<Post> getPostFromToDateByTag(ETag tag, Date fromDate, Date toDate);
+    List<Post> getPostsByUserId(Long id);
 }

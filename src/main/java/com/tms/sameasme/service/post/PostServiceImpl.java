@@ -85,4 +85,9 @@ public class PostServiceImpl implements PostService {
         Collections.reverse(postList);
         return postList;
     }
+
+    @Override
+    public List<Post> getPostsByUserId(Long id) {
+        return postRepository.findPostsByUserId(id);
+    }
 }

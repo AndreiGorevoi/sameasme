@@ -256,10 +256,12 @@ iframe {
 }
 
 .admin-panel{
+  position: relative;
   max-width: 8em; /* блок занимает ширину родителя, max-width её ограничивает */
   min-height: 2em;
   margin-left: auto;
   margin-right: 0em;
+  margin-top: 0em;
   border: 1px solid orange;
   background: #fff5d7;
 }
@@ -274,9 +276,9 @@ iframe {
 .logout_panel{
   max-width: 8em; /* блок занимает ширину родителя, max-width её ограничивает */
   min-height: 2em;
-  margin-top: 3em;
-  margin-left: auto;
-  margin-right: 0em;
+  margin-top: 2em;
+  margin-left: 0;
+  margin-right: auto;
   border: 1px solid orange;
   background: #fff5d7;
 }
@@ -367,6 +369,11 @@ iframe {
 .input100:focus + .focus-input100 {
   -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
   animation: anim-shadow 0.5s ease-in-out forwards;
+}
+
+.aDelete-post{
+  color: red;
+  border: solid;
 }
 
 @-webkit-keyframes anim-shadow {
