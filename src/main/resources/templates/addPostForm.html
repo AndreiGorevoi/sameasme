@@ -9,10 +9,32 @@
 <body>
 
 <div class="input-group flex-nowrap">
-    <div class="input-group-prepend">
-        <span class="input-group-text" id="1">*</span>
+    <div class="input-group flex-nowrap">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="6">*</span>
+        </div>
+        <input id="id-title" type="text" class="form-control" placeholder="title" aria-label="Username" aria-describedby="addon-wrapping">
     </div>
-    <input id="id-amount-of-people" type="number" value="1" class="form-control mx-sm-3" placeholder="Amount of people" aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+<div class="input-group flex-nowrap">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="1">*Number of players</span>
+    </div>
+    <input id="id-amount-of-people" type="number" value="1" class="form-control" placeholder="Amount of people" aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+<div class="input-group flex-nowrap">
+    <div class="input-group flex-nowrap">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="7">*</span>
+        </div>
+        <select id="id-tag" class="custom-select">
+            <option selected>Choose a tag</option>
+            <option>FOOTBALL</option>
+            <option>BASKETBALL</option>
+            <option>TENNIS</option>
+            <option>VOLLEYBALL</option>
+        </select>
+    </div>
 </div>
 <div class="input-group flex-nowrap">
     <div class="input-group-prepend">
@@ -42,14 +64,13 @@
     </div>
     <input id="id-location" type="text" class="form-control" placeholder="location" aria-label="Username" aria-describedby="addon-wrapping">
 </div>
-<div class="input-group mb-3">
+<div class="input-group flex-nowrap">
     <div class="input-group-prepend">
-        <span class="input-group-text">*</span>
-        <span class="input-group-text">Match date</span>
+        <span class="input-group-text">*Match date</span>
     </div>
     <input id="id-match-date" type="datetime-local" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
 </div>
-<div class="input-group mb-3">
+<div class="input-group flex-nowrap">
     <div class="input-group-prepend">
         <span class="input-group-text">BYN</span>
         <span class="input-group-text">0.00</span>
@@ -62,24 +83,7 @@
         Shower is present
     </label>
 </div>
-<div class="input-group flex-nowrap">
-    <div class="input-group-prepend">
-        <span class="input-group-text" id="6">*</span>
-    </div>
-    <input id="id-title" type="text" class="form-control" placeholder="title" aria-label="Username" aria-describedby="addon-wrapping">
-</div>
-<div class="input-group flex-nowrap">
-    <div class="input-group-prepend">
-        <span class="input-group-text" id="7">*</span>
-    </div>
-    <select id="id-tag" class="custom-select">
-        <option selected>Choose a tag</option>
-        <option>FOOTBALL</option>
-        <option>BASKETBALL</option>
-        <option>TENNIS</option>
-        <option>VOLLEYBALL</option>
-    </select>
-</div>
+
 <button id="add-post-button" type="button" class="btn btn-outline-primary">Add post</button>
 <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="/js/addPost.js"></script>

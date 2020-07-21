@@ -34,13 +34,13 @@
             <br>
             <a href="#" id="logout-link">Log out</a>
         </div>
-        <div th:if="${#session.getAttribute('admin')}" class="admin-panel">
+        <div th:if="${#session.getAttribute('admin')==true}" class="admin-panel">
             <div>
                 <a href="/admin/post">delete post</a> <br>
                 <a href="/admin/user">users</a>
             </div>
         </div>
-        <div th:if="${#session.getAttribute('moderator')}" class="admin-panel">
+        <div th:if="${#session.getAttribute('moderator')==true and #session.getAttribute('admin')==false}" class="admin-panel">
             <div>
                 <a href="/admin/post">delete post</a>
             </div>

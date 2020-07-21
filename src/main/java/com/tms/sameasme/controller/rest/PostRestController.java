@@ -86,4 +86,9 @@ public class PostRestController extends BaseController {
         }
 
     }
+
+    @PostMapping(value = "post")
+    public Post getPostById(@RequestParam Long postId){
+        return postService.getPostById(postId);
+    }
 }
