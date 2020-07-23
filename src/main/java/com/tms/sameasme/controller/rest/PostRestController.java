@@ -74,8 +74,8 @@ public class PostRestController extends BaseController {
         }
     }
 
-    @GetMapping(value = "/{id}")
-    public String deleteUserPost(@PathVariable Long id){
+    @DeleteMapping(value = "/post")
+    public String deleteUserPost(@RequestParam Long id){
         Post postToDelete = postService.getPostById(id);
         if(postToDelete.getUser().getId().equals(getUserId())){
             postToDelete.setActive(false);

@@ -1,10 +1,14 @@
 package com.tms.sameasme.controller.rest;
 
-import com.tms.sameasme.dto.user.UserChangeDto;
+import com.tms.sameasme.dto.post.UpdatePostDto;
+import com.tms.sameasme.dto.user.UpdateUserDto;
+import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.model.role.ERole;
+import com.tms.sameasme.model.tag.ETag;
 import com.tms.sameasme.model.user.User;
 import com.tms.sameasme.service.post.PostService;
 import com.tms.sameasme.service.role.RoleService;
+import com.tms.sameasme.service.tag.TagService;
 import com.tms.sameasme.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +22,18 @@ public class AdminRestController {
     private final PostService postService;
     private final UserService userService;
     private final RoleService roleService;
+    private final TagService tagService;
 
     @Autowired
-    public AdminRestController(PostService postService, UserService userService, RoleService roleService) {
+    public AdminRestController(PostService postService, UserService userService, RoleService roleService, TagService tagService) {
         this.postService = postService;
         this.userService = userService;
         this.roleService = roleService;
+        this.tagService = tagService;
     }
 
     @DeleteMapping(value = "post")
-    public boolean deletePost(@RequestParam(required = false) Long id){
+    public boolean deletePost(@RequestParam Long id){
         return postService.deletePostById(id);
     }
 
@@ -47,7 +53,7 @@ public class AdminRestController {
     }
 
     @PostMapping(value = "user")
-    public List<User> changeInfoToUser(@RequestBody UserChangeDto dto){
+    public List<User> changeInfoToUser(@RequestBody UpdateUserDto dto){
         User user = userService.findUserById(dto.getId());
         user.setLogin(dto.getNewLogin());
         user.setName(dto.getNewName());
@@ -55,5 +61,13 @@ public class AdminRestController {
                 .collect(Collectors.toList()));
         userService.addUser(user);
         return userService.findAll();
+    }
+
+    @PostMapping(value = "post")
+    public Post changeInfoToPost(@RequestBody UpdatePostDto dto){
+        Post post = postService.getPostById(dto.getId());
+        Post updatedPost = dto.updatePost(post);
+        updatedPost.setTag(tagService.getTagByName(dto.getTag()));
+        return postService.savePost(post);
     }
 }

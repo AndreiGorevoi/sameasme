@@ -22,4 +22,5 @@ public class RoleServiceImpl implements RoleService {
     public Role getRoleByName(ERole eRole) {
         return roleRepository.getRoleByName(eRole);
     }
+
 }

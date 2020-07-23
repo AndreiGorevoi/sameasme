@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class UserChangeDto {
+public class UpdateUserDto {
     private Long id;
     private String newName;
     private String newLogin;

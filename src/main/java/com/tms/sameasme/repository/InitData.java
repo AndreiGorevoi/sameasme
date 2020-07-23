@@ -91,7 +91,7 @@ public class InitData implements ApplicationListener {
             post.setMatchDate(new Date());
             post.setTitle("Football match!");
             post.setContactNumber("+375447475477");
-            post.setLocation("FC Dinamo");
+            post.setLocation("Минск ул.Гамарника д.28");
             post.setPrice(5);
             post.setShowerPresent(true);
             post.setAmountOfPeople(5);

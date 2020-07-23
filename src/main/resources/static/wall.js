@@ -54,16 +54,6 @@ $('#button-add-form-post').click(function () {
     location.href="http://localhost:8080/post/add"
 })
 
-$('#button-sort-by-time').click(function () {
-    destroyChildren($('#my-wall')[0]);
-    $.ajax({
-        type:"GET",
-        url:"http://localhost:8080/post/allOrdered",
-        success: function (data){
-            writePosts(data);
-        }
-    })
-})
 
 $('#button-calendar-sort').click(function () {
     var dateFrom =new Date($('#form-date-match-filter').val());
@@ -131,12 +121,20 @@ function writePosts(data) {
            var p4 = document.createElement("P");
            var p5 = document.createElement("P");
            var p6 = document.createElement("P");
+           var p7 = document.createElement("P");
+           var p8 = document.createElement("P");
+           var divForMap = document.createElement("div");
+           var buttonForMap = document.createElement("button");
+           buttonForMap.setAttribute("onclick","printMap(\""+data[i].location+"\","+i+")");
+           buttonForMap.innerText="Show on map!";
+           divForMap.setAttribute("id","div-for-map-"+i);
            if(actuallyUser===data[i].user.login){
                writeDeleteOrNot=true;
                var aDelete = document.createElement("A");
-               aDelete.setAttribute("id","aDelete-post");
+               aDelete.setAttribute("id","aDelete-post-"+i);
                aDelete.setAttribute("class","aDelete-post");
-               aDelete.setAttribute("href","post/"+data[i].id);
+               aDelete.setAttribute("onclick","deletePostFun("+data[i].id+")")
+               aDelete.setAttribute("href","#");
                aDelete.innerText="delete X";
            }
            var br = document.createElement("BR")
@@ -150,19 +148,23 @@ function writePosts(data) {
            p2.setAttribute("class","contact-number-text text-post");
            p3.setAttribute("class","money text-post");
            p4.setAttribute("class","location text-post");
+           p7.setAttribute("class","location text-post");
+           p8.setAttribute("class","location text-post");
            h.innerText=data[i].title;
            var dateWrite = new Date(data[i].matchDate);
-           p1.innerText="Description: "+data[i].description +" When: "+ dateWrite;
+           p1.innerText="Description: "+data[i].description;
            p2.innerText="Number for vacation: " + data[i].contactNumber;
            p3.innerText="Cost: " + data[i].price +" BYR";
            p4.innerText="Where: " + data[i].location;
            p5.innerText="Post id: " + data[i].id;
            p6.innerText="Post owner: " + data[i].user.login;
+           p7.innerText=" When: "+ dateWrite
+           p8.innerText= "Amount of people: " + data[i].amountOfPeople;
            aTag.innerText=data[i].tag.name;
            if(writeDeleteOrNot){
-               div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6,aDelete);
+               div.append(h,br,p7,br,p8,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6,divForMap,aDelete,buttonForMap);
            }else {
-               div.append(h,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6);
+               div.append(h,br,p7,br,p8,br,img,p1,br,p2,br,p3,br,p4,br,aTag,br,p5,p6,divForMap,buttonForMap);
            }
            $('#my-wall').append(div);
        }
@@ -170,3 +172,66 @@ function writePosts(data) {
 
 
 }
+
+function printMap(location,i) {
+    var divForMap = document.getElementById('div-for-map-'+i);
+    divForMap.setAttribute("style","height: 400px; width: 100%")
+    divForMap.rend
+    var Mapss = function geoadres(adress) {
+        var resultlat = ''; var resultlng = '';
+        $.ajax({
+            async: false,
+            dataType: "json",
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+adress+'&sensor=false&key=AIzaSyAAsO9AatxituJSkZljKGpOMX6MDxdkbCw',
+            success: function(data){
+                for (var key in data.results) {
+                    resultlat = data.results[key].geometry.location.lat;
+                    resultlng = data.results[key].geometry.location.lng;
+                } }
+        });
+        return { lat: resultlat, lng: resultlng}
+    }
+    var coordLat= new Mapss(location).lat;
+    var coordLng= new Mapss(location).lng;
+    var pos = {lat:coordLat,lng:coordLng};
+    var opt = {
+        center: pos,
+        zoom:17,
+    }
+    var map = new google.maps.Map(document.getElementById('div-for-map-'+i),opt);
+    var marker = new google.maps.Marker({
+        position:pos,
+        map: map,
+    })
+}
+
+
+function deletePostFun(i) {
+    $.ajax({
+        type:"DELETE",
+        url:"http://localhost:8080/post/post",
+        data:{'id':i},
+        success: function (data) {
+            alert(data)
+            destroyChildren($('#my-wall')[0]);
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:8080/post/all",
+                success: function (data) {
+                    writePosts(data);
+                },
+                error:function (e) {
+                    alert("Something wrong")
+                    console.log(e)
+                }
+            })
+        },
+        error:function (e) {
+            alert("Something wrong")
+            console.log(e);
+        }
+    })
+
+
+}
+
