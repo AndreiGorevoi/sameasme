@@ -1,6 +1,7 @@
 package com.tms.sameasme.model;
 
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 
@@ -13,4 +14,5 @@ public class BaseModel {
 
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean active = true;
+
 }

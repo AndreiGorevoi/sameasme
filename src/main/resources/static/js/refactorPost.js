@@ -79,8 +79,7 @@ function editFun(i) {
     var postId= $('#cell-with-id-'+i)[0].textContent;
     $.ajax({
         type:"POST",
-        url:"http://localhost:8080/post/post",
-        data:{'postId': postId },
+        url:"http://localhost:8080/post/"+postId,
         success:function (data) {
             //write block with inputs for edit post;
             destroyChildren($('#div-get-all-posts')[0]);

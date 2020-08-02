@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "post")
 public class PostController extends BaseController {
-    @GetMapping(value = "add")
+    @GetMapping(value = "/")
     public String getAddPostForm(){
         return "addPostForm";
     }

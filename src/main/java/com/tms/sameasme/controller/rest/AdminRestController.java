@@ -2,6 +2,7 @@ package com.tms.sameasme.controller.rest;
 
 import com.tms.sameasme.dto.post.UpdatePostDto;
 import com.tms.sameasme.dto.user.UpdateUserDto;
+import com.tms.sameasme.mapper.user.UserMapper;
 import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.model.role.ERole;
 import com.tms.sameasme.model.tag.ETag;
@@ -38,8 +39,8 @@ public class AdminRestController {
     }
 
     @DeleteMapping(value = "user")
-    public List<User> deleteUser(@RequestParam Long id){
-        return userService.deleteById(id);
+    public List<UserMapper> deleteUser(@RequestParam Long id){
+        return UserMapper.getAllUsers(userService.deleteById(id));
     }
 
     @PostMapping(value = "role")
@@ -53,14 +54,14 @@ public class AdminRestController {
     }
 
     @PostMapping(value = "user")
-    public List<User> changeInfoToUser(@RequestBody UpdateUserDto dto){
+    public List<UserMapper> changeInfoToUser(@RequestBody UpdateUserDto dto){
         User user = userService.findUserById(dto.getId());
         user.setLogin(dto.getNewLogin());
         user.setName(dto.getNewName());
         user.setRoles(dto.getNewRoles().stream().map(role->roleService.getRoleByName(ERole.valueOf(role)))
                 .collect(Collectors.toList()));
         userService.addUser(user);
-        return userService.findAll();
+        return  UserMapper.getAllUsers(userService.findAll());
     }
 
     @PostMapping(value = "post")

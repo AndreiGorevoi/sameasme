@@ -1,27 +1,8 @@
-$('#delete-user-button').click(function () {
-    var userIdForDelete = $('#id-for-delete-input').val();
-    $.ajax({
-        type:"DELETE",
-        url:"http://localhost:8080/admin/user",
-        data: {'id': userIdForDelete},
-        success:function (data){
-            console.log(data);
-            if(data==true){
-                alert("User has been deleted");
-            }
-        },
-        error:function (e) {
-            alert("something wrong");
-        }
-    })
-
-})
-
 $('#button-list-of-users').click(function () {
     destroyChildren(document.getElementById('block-for-users-list'))
 $.ajax({
     type:"GET",
-    url:"http://localhost:8080/user/all",
+    url:"http://localhost:8080/user/",
     success:function (data) {
         printListOfUser(data);
     }

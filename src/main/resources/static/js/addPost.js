@@ -50,7 +50,7 @@ $('#add-post-button').click(function () {
         }
         $.ajax({
             type:"POST",
-            url:"http://localhost:8080/post/add",
+            url:"http://localhost:8080/post/",
             data:JSON.stringify(newPost),
             contentType:"application/json",
             success:function (data){

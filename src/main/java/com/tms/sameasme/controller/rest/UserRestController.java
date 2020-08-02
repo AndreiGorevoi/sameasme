@@ -1,6 +1,8 @@
 package com.tms.sameasme.controller.rest;
 
 import com.tms.sameasme.controller.BaseController;
+import com.tms.sameasme.mapper.user.UserMapper;
+import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.model.user.User;
 import com.tms.sameasme.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +20,9 @@ public class UserRestController extends BaseController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/all")
-    public List<User> getAllUsers(){
-        return userService.findAll();
+    @GetMapping(value = "/")
+    public List<UserMapper> getAllUsers(){
+        return UserMapper.getAllUsers(userService.findAll());
     }
-
-
-
 
 }

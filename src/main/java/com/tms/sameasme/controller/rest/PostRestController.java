@@ -29,7 +29,7 @@ public class PostRestController extends BaseController {
         this.tagRepository = tagRepository;
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/")
     public Post addPost(@RequestBody CreatePostDto dto){
         Post post = dto.updatePost(dto);
         post.setUser(userService.findUserById(getUserId()));
@@ -44,21 +44,6 @@ public class PostRestController extends BaseController {
     @GetMapping(value = "/user")
     public List<Post> getPostForUser(){
         return postService.getPostsByUserId(getUserId());
-    }
-
-    @GetMapping(value = "/allOrdered")
-    public List<Post> getAllPostsOrderByMatchDate(){
-        return postService.getAllOrderedByMatchDate();
-    }
-
-    @PostMapping(value = "/byTeg")
-    public List<Post> getAllByTeg(@RequestParam String tag){
-        return (tag.equals("ALL")) ? postService.getAll() : postService.getAllByTag(ETag.valueOf(tag));
-    }
-
-    @PostMapping(value = "/dateFilter")
-    public List<Post> getPostsFilterByDate(@RequestParam Date fromDate, @RequestParam Date toDate){
-        return postService.getAllFromToDate(fromDate,toDate);
     }
 
     @PostMapping(value = "/filtered")
@@ -87,8 +72,8 @@ public class PostRestController extends BaseController {
 
     }
 
-    @PostMapping(value = "post")
-    public Post getPostById(@RequestParam Long postId){
-        return postService.getPostById(postId);
+    @PostMapping(value = "/{id}")
+    public Post getPostById(@PathVariable Long id){
+        return postService.getPostById(id);
     }
 }

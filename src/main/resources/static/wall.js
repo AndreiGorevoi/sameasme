@@ -51,7 +51,7 @@ $('#button-apply-filters').click(function () {
 })
 
 $('#button-add-form-post').click(function () {
-    location.href="http://localhost:8080/post/add"
+    location.href="http://localhost:8080/post/"
 })
 
 
