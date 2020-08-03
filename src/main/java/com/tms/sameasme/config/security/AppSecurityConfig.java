@@ -37,7 +37,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/wall",true);
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/wall",true)
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
 
         http.csrf()
                 .disable()

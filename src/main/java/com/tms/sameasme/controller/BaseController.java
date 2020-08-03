@@ -13,6 +13,7 @@ public class BaseController {
         return ex.getLocalizedMessage();
     }
 
+
     public Long getUserId(){
         AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return appUser.getId();
