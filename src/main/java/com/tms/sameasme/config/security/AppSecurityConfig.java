@@ -31,6 +31,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/css/**", "/js/**", "/images/**","/fonts/**",
                         "/images/**","/js/**","/vendor/**").permitAll()
                 .antMatchers("/admin/post").hasAnyRole("MODERATOR","ADMIN")
@@ -44,6 +45,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests();
+        http.headers().frameOptions().disable();
 
     }
 }
