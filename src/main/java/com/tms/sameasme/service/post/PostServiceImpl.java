@@ -3,6 +3,8 @@ package com.tms.sameasme.service.post;
 import com.tms.sameasme.model.tag.ETag;
 import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.repository.post.PostRepository;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import java.util.*;
 
 @Transactional
 @Service
+@Slf4j
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
@@ -22,6 +25,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAll() {
+        log.debug("searching all posts");
         return postRepository.findAll();
     }
 
@@ -32,11 +36,13 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post getPostById(Long id) {
+        log.debug("searching post by id: " + id);
         return postRepository.findPostById(id);
     }
 
     @Override
     public Post savePost(Post post) {
+        log.debug("saving post with id: " + post.getId());
         return postRepository.save(post);
     }
 
@@ -52,6 +58,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public boolean deletePostById(Long id) {
+        log.debug("deleting post by id: " + id);
         Post post = postRepository.findPostById(id);
         post.setActive(false);
         postRepository.save(post);
@@ -60,6 +67,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAllFromToDate(Date fromDate, Date toDate) {
+        log.debug("searching all posts by filters:[ tag: ALL, from date: "
+                + fromDate.toString() + ", to date: "+ toDate.toString());
         //        set date time from 00:00 to 23:59
         Date fromDateModify = new Date();
         Date toDateModify = new Date();
@@ -74,6 +83,8 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getPostFromToDateByTag(ETag tag, Date fromDate, Date toDate) {
+        log.debug("searching all posts by filters:[ tag:  " + tag.toString()+", from date: "
+                + fromDate.toString() + ", to date: "+ toDate.toString());
         //        set date time from 00:00 to 23:59
         Date fromDateModify = new Date();
         Date toDateModify = new Date();
@@ -88,6 +99,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getPostsByUserId(Long id) {
+        log.debug("searching all posts by user id:" + id);
         return postRepository.findPostsByUserId(id);
     }
 }

@@ -1,0 +1,6 @@
+1122 [main] INFO  c.tms.sameasme.SameasmeApplication - Starting SameasmeApplication on DESKTOP-3RGLQHO with PID 5016 (C:\Users\javac\IdeaProjects\sameasme\target\classes started by javac in C:\Users\javac\IdeaProjects\sameasme)
+1126 [main] DEBUG c.tms.sameasme.SameasmeApplication - Running with Spring Boot v2.3.1.RELEASE, Spring v5.2.7.RELEASE
+1126 [main] INFO  c.tms.sameasme.SameasmeApplication - The following profiles are active: h2
+7675 [main] INFO  c.tms.sameasme.SameasmeApplication - Started SameasmeApplication in 7.25 seconds (JVM running for 8.847)
+38773 [http-nio-8080-exec-8] DEBUG c.t.s.service.post.PostServiceImpl - searching all posts by filters:[ tag:  FOOTBALL from date: Sat Jan 01 02:00:00 MSK 2000 to date: Sat Jan 01 03:00:00 MSK 2050
+213156 [http-nio-8080-exec-6] DEBUG c.t.s.service.post.PostServiceImpl - searching all posts by filters:[ tag:  FOOTBALL from date: Sat Jan 01 02:00:00 MSK 2000 to date: Sat Jan 01 03:00:00 MSK 2050
