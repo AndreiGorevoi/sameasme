@@ -1,5 +1,6 @@
 package com.tms.sameasme.service.post;
 
+import com.tms.sameasme.dto.post.UpdatePostDto;
 import com.tms.sameasme.model.tag.ETag;
 import com.tms.sameasme.model.post.Post;
 
@@ -17,4 +18,5 @@ public interface PostService {
     List<Post> getAllFromToDate(Date fromDate, Date toDate);
     List<Post> getPostFromToDateByTag(ETag tag, Date fromDate, Date toDate);
     List<Post> getPostsByUserId(Long id);
+    Post updatePost(UpdatePostDto updatedPostDto);
 }

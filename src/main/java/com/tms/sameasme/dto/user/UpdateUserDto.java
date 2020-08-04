@@ -1,6 +1,5 @@
 package com.tms.sameasme.dto.user;
 
-import com.tms.sameasme.model.role.Role;
 import lombok.Data;
 
 import java.util.List;

@@ -1,9 +1,10 @@
 package com.tms.sameasme.service.post;
 
+import com.tms.sameasme.dto.post.UpdatePostDto;
 import com.tms.sameasme.model.tag.ETag;
 import com.tms.sameasme.model.post.Post;
 import com.tms.sameasme.repository.post.PostRepository;
-import lombok.extern.log4j.Log4j;
+import com.tms.sameasme.repository.tag.TagRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,12 @@ import java.util.*;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private final TagRepository tagRepository;
 
     @Autowired
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, TagRepository tagRepository) {
         this.postRepository = postRepository;
+        this.tagRepository = tagRepository;
     }
 
     @Override
@@ -101,5 +104,12 @@ public class PostServiceImpl implements PostService {
     public List<Post> getPostsByUserId(Long id) {
         log.debug("searching all posts by user id:" + id);
         return postRepository.findPostsByUserId(id);
+    }
+
+    @Override
+    public Post updatePost(UpdatePostDto updatedPostDto) {
+        Post updatedPost = updatedPostDto.updatePost(postRepository.findPostById(updatedPostDto.getId()));
+        updatedPost.setTag(tagRepository.findTagByName(updatedPostDto.getTag()));
+        return postRepository.save(updatedPost);
     }
 }

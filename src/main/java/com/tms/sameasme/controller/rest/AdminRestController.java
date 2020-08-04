@@ -55,20 +55,12 @@ public class AdminRestController {
 
     @PostMapping(value = "user")
     public List<UserMapper> changeInfoToUser(@RequestBody UpdateUserDto dto){
-        User user = userService.findUserById(dto.getId());
-        user.setLogin(dto.getNewLogin());
-        user.setName(dto.getNewName());
-        user.setRoles(dto.getNewRoles().stream().map(role->roleService.getRoleByName(ERole.valueOf(role)))
-                .collect(Collectors.toList()));
-        userService.addUser(user);
+        userService.updateUser(dto);
         return  UserMapper.getAllUsers(userService.findAll());
     }
 
     @PostMapping(value = "post")
     public Post changeInfoToPost(@RequestBody UpdatePostDto dto){
-        Post post = postService.getPostById(dto.getId());
-        Post updatedPost = dto.updatePost(post);
-        updatedPost.setTag(tagService.getTagByName(dto.getTag()));
-        return postService.savePost(post);
+        return postService.updatePost(dto);
     }
 }

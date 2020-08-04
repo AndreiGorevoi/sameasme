@@ -1,5 +1,6 @@
 package com.tms.sameasme.service.user;
 
+import com.tms.sameasme.dto.user.UpdateUserDto;
 import com.tms.sameasme.model.role.ERole;
 import com.tms.sameasme.model.role.Role;
 import com.tms.sameasme.model.user.User;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -87,5 +89,15 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public User updateUser(UpdateUserDto newUser) {
+        User user = userRepository.findUserById(newUser.getId());
+        user.setLogin(newUser.getNewLogin());
+        user.setName(newUser.getNewName());
+        user.setRoles(newUser.getNewRoles().stream().map(role->roleRepository.getRoleByName(ERole.valueOf(role)))
+                .collect(Collectors.toList()));
+        return userRepository.save(user);
     }
 }

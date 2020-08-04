@@ -9,11 +9,13 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
+
     @Query("from User u where u.login=?1")
     User findUserByLogin(String login);
 
     @Query("from User u where u.id=?1")
     User findUserById(Long id);
+
     @Query("from User u where u.active=true ")
     List<User> findAll();
 

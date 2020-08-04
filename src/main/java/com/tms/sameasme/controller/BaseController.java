@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.List;
 
 public class BaseController {
+
     @ExceptionHandler(Exception.class)
     public String exceptionHandler(Exception ex){
         return ex.getLocalizedMessage();
     }
-
 
     public Long getUserId(){
         AppUser appUser = (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -1,15 +1,16 @@
 package com.tms.sameasme.model.post;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tms.sameasme.model.BaseModel;
 import com.tms.sameasme.model.tag.Tag;
 import com.tms.sameasme.model.user.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
