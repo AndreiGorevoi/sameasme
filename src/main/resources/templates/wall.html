@@ -25,6 +25,8 @@
 </head>
 <body>
 
+
+
 <div class="limiter">
     <div class="container-wall">
         <div class="user-panel">
@@ -46,7 +48,7 @@
             </div>
         </div>
         <div class="filter-panel">
-            <a id="refresh" href="#">Refresh</a>
+            <a class="badge badge-warning" id="refresh" href="#">↺</a>
             <div>
                 <select id="select-tag">
                     <option>ALL</option>
@@ -59,15 +61,15 @@
                 <input type="date" id="form-date-match-filter">
                 <span>To</span>
                 <input type="date" id="to-date-match-filter">
-                <button id="button-apply-filters">Apply filters</button>
+                <button class="btn btn-info" id="button-apply-filters">Apply filters</button>
+                <button class="btn btn-success" id="button-add-form-post">Add post</button>
+                <button class="btn btn-success" id="button-add-form-post2">Add post2</button>
             </div>
-
-            <button id="button-add-form-post">Add post</button>
         </div>
-
         <div id="my-wall" class="wall-for-main_div"></div>
     </div>
-</div>
+    </div>
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOHXK2uMzILDWS2EjDyYxI895dPpp-GtI" async defer></script>
 <!--===============================================================================================-->
