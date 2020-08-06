@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wall</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+
+
+<div class="limiter">
+    <div class="container-wall">
+        <div class="user-panel">
+            <span id="span-actually-user" th:attr="data-value=${#session.getAttribute('userName')}" th:text="Hello+ ' ' + ${#session.getAttribute('userName')}">Hello user</span>
+            <br>
+            <a href="#" id="link-get-my-posts">My posts</a>
+            <br>
+            <a href="#" id="logout-link">Log out</a>
+        </div>
+        <div th:if="${#session.getAttribute('admin')==true}" class="admin-panel">
+            <div>
+                <a href="/admin/post">delete post</a> <br>
+                <a href="/admin/user">users</a>
+            </div>
+        </div>
+        <div th:if="${#session.getAttribute('moderator')==true and #session.getAttribute('admin')==false}" class="admin-panel">
+            <div>
+                <a href="/admin/post">delete post</a>
+            </div>
+        </div>
+        <div class="filter-panel">
+            <a class="badge badge-warning" id="refresh" href="#">↺</a>
+            <div>
+                <select id="select-tag">
+                    <option>ALL</option>
+                    <option>FOOTBALL</option>
+                    <option>BASKETBALL</option>
+                    <option>VOLLEYBALL</option>
+                    <option>TENNIS</option>
+                </select>
+                <span>From</span>
+                <input type="date" id="form-date-match-filter">
+                <span>To</span>
+                <input type="date" id="to-date-match-filter">
+                <button class="btn btn-info" id="button-apply-filters">Apply filters</button>
+                <button class="btn btn-success" id="button-add-form-post">Add post</button>
+            </div>
+        </div>
+        <div id="my-wall" class="wall-for-main_div"></div>
+    </div>
+    </div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOHXK2uMzILDWS2EjDyYxI895dPpp-GtI" async defer></script>
+<!--===============================================================================================-->
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+
+<script src="/js/main.js"></script>
+<!--===============================================================================================-->
+<script src="wall.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Add post</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/addPost.css">
+</head>
+<body>
+<div class="input-group flex-nowrap">
+    <div class="input-group flex-nowrap">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="6">*</span>
+        </div>
+        <input  id="id-title" type="text" class="form-control" placeholder="title" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
+</div>
+<small style="color: red" id="incorrect-valid-title" hidden>*You must fill this field</small>
+<div class="input-group flex-nowrap">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="1">Number of players</span>
+    </div>
+    <input id="id-amount-of-people" type="number" value="1" class="form-control" placeholder="Amount of people" aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+<div class="input-group flex-nowrap">
+    <div class="input-group flex-nowrap">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="7">*</span>
+        </div>
+        <select id="id-tag" class="custom-select">
+            <option selected>Choose a tag</option>
+            <option>FOOTBALL</option>
+            <option>BASKETBALL</option>
+            <option>TENNIS</option>
+            <option>VOLLEYBALL</option>
+        </select>
+    </div>
+</div>
+<small style="color: red" id="incorrect-valid-title2" hidden>*You must fill this field</small>
+<div class="input-group flex-nowrap">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="2">*</span>
+    </div>
+    <input id="id-tel" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+           required class="form-control" placeholder="Number for contact"
+           aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+<small style="color: red" id="incorrect-valid-title3" hidden>*You must fill this field</small>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">More info</span>
+    </div>
+    <textarea id="id-description" class="form-control" placeholder="Description" aria-label="With textarea"></textarea>
+</div>
+
+<div class="input-group flex-nowrap">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="3">img</span>
+    </div>
+    <input id="id-img" type="url" class="form-control" placeholder="Link for image" aria-label="Username" aria-describedby="addon-wrapping">
+</div>
+<div class="input-group flex-nowrap">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="4">City</span>
+    </div>
+    <input id="id-location1" type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="addon-wrapping">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="4.1">Street</span>
+    </div>
+    <input id="id-location2" type="text" class="form-control" placeholder="Street" aria-label="Street" aria-describedby="addon-wrapping">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="4.2">Home</span>
+    </div>
+    <input id="id-location3" type="text" class="form-control" placeholder="Home" aria-label="Home" aria-describedby="addon-wrapping">
+</div>
+<div class="input-group flex-nowrap">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Match date</span>
+    </div>
+    <input id="id-match-date" type="datetime-local" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+</div>
+<div class="input-group flex-nowrap">
+    <div class="input-group-prepend">
+        <span class="input-group-text">BYN</span>
+        <span class="input-group-text">0.00</span>
+    </div>
+    <input id="id-price" type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" id="id-shower-present">
+    <label class="form-check-label" for="id-shower-present">
+        Shower is present
+    </label>
+</div>
+
+<button id="add-post-button" type="button" class="btn btn-outline-primary">Add post</button>
+<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/js/addPost.js"></script>
+
+</body>
+</html>
